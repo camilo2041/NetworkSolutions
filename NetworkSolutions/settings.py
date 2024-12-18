@@ -117,7 +117,7 @@ DATABASES = {
         'NAME': 'network_solutions',
         'USER': 'root',
         'PASSWORD': '',
-        'HOST': 'localhost',  # Cambiar a la URL o IP de tu base de datos en Render
+        'HOST': '127.0.0.1',  # Cambiar a la URL o IP de tu base de datos en Render
         'PORT': '3306',  # Puerto típico de MySQL
     }
 }
