@@ -129,7 +129,7 @@ DATABASES = {
         'NAME': 'network_solutions',
         'USER': 'root',
         'PASSWORD': '',
-        'HOST': 'localhost',
+        'HOST': 'https://networksolutions.onrender.com/',
         'PORT': '3306',
     }
 }
