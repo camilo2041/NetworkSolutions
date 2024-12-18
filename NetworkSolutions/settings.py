@@ -20,16 +20,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY', default='django-insecure-!@#$%^&*(-_)')
+SECRET_KEY = 'django-insecure-$0$*&^%$#@$!@#@$%^&*^%$#@$!@#@$%^&*^%$#@$!@#@$%^&*^%$#@$!@#@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'RENDER' not in os.environ
+DEBUG = True
 
-ALLOWED_HOSTS = []
+CSRF_TRUSTED_ORIGINS = ['https://37ba-179-51-111-78.ngrok-free.app']
 
-RENDER_EXTERNAL_URL = os.environ.get('RENDER_EXTERNAL_URL')
-if RENDER_EXTERNAL_URL:
-    ALLOWED_HOSTS.append(RENDER_EXTERNAL_URL)
+ALLOWED_HOSTS = ['*']
+CORS_ALLOWED_ORIGINS = [
+    '*',
+]
+
+CSRF_COOKIE_SECURE = False
 
 
 # Application definition
@@ -88,7 +91,6 @@ JAZZMIN_SETTINGS = {
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhitenoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -115,7 +117,6 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'NetworkSolutions.wsgi.application'
 
 
 # Database
@@ -129,7 +130,7 @@ DATABASES = {
         'NAME': 'network_solutions',
         'USER': 'root',
         'PASSWORD': '',
-        'HOST': 'networksolutions.onrender.com',
+        'HOST': 'localhost',
         'PORT': '3306',
     }
 }
@@ -168,12 +169,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
-# Solo en desarrollo, usa STATICFILES_DIRS para especificar directorios adicionales
-if DEBUG:
-    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-
-# En producción, usa STATIC_ROOT
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 if not DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
