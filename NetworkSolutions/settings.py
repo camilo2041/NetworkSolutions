@@ -107,15 +107,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'NetworkSolutions.wsgi.application'
 
-# Database configuration
+# Base de datos
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get('DB_NAME', 'network_solutions'),
-        'USER': os.environ.get('DB_USER', 'root'),
-        'PASSWORD': os.environ.get('DB_PASSWORD', ''),
-        'HOST': os.environ.get('DB_HOST', 'localhost'),
-        'PORT': os.environ.get('DB_PORT', '3306'),
+        'NAME': 'network_solutions',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'https://api.render.com/deploy/srv-cthfag9u0jms7384drog?key=Hl4ooxhAdcE',  # Cambiar a la URL o IP de tu base de datos en Render
+        'PORT': '3306',  # Puerto típico de MySQL
     }
 }
 
