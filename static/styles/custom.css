@@ -1,0 +1,40 @@
+/* custom.css */
+.login-logo img {
+    max-width: 300px; /* Ajusta el ancho a tu preferencia */
+    max-height: 300px; /* Ajusta el alto a tu preferencia */
+    width: auto; /* Mantiene las proporciones */
+    height: auto; /* Mantiene las proporciones */
+    margin: 0 auto; /* Centra el logo */
+    box-shadow: 5px 5px 10px;
+    border-radius: 25px;
+}
+/* Fondo oscuro para el admin */
+body {
+    background-color: #1c1e2b !important;
+}
+
+/* Color de los botones */
+.btn-primary {
+    background-color: #f48225 !important;
+    border-color: #f48225 !important;
+}
+
+/* Color de los textos */
+.text-primary {
+    color: #f48225 !important;
+}
+
+/* Ajusta encabezados */
+.card-header, .navbar {
+    background-color: #1c1e2b !important;
+    color: #ffffff !important;
+}
+
+/* Hover en los enlaces */
+a:hover {
+    color: #f48225 !important;
+}
+*{
+    scrollbar-width: thin;
+    scrollbar-color: rgb(207, 207, 207) transparent;
+}

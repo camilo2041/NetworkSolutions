@@ -1,0 +1,110 @@
+{% load static %}
+{% load humanize %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Productos</title>
+    <link rel="icon" href="{% static 'image/logo.jpg' %}">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-50">
+
+    <!-- Navbar fija -->
+    <nav class="sticky top-0 bg-gradient-to-r from-orange-500 via-yellow-400 to-orange-600 p-4 shadow-lg z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="javascript:history.back()" class="text-white text-lg font-semibold hover:text-gray-200">
+                &larr; Volver
+            </a>
+            <h1 class="text-white text-xl font-bold">{{ categoria.Nombre_categoria }}</h1>
+
+            <!-- Menú de usuario -->
+            <div class="relative flex items-center">
+                <div class="text-white">
+                    {% if user.is_authenticated %}
+                        <button id="dropdown-button" class="flex items-center gap-2 text-white hover:text-gray-200 transition duration-300">
+                            {{ user.username }} &#x25BC;
+                        </button>
+                        <div id="dropdown-menu" class="hidden absolute right-0 mt-2 w-40 bg-white rounded shadow-md">
+                            <a href="{% url 'perfil_usuario' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Ver perfil</a>
+                            <a href="{% url 'logout' %}" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Cerrar sesión</a>
+                        </div>
+                    {% else %}
+                        <span>Invitado</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <main class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-extrabold text-center text-gray-700 mb-8 transition-all duration-300">Productos</h1>
+
+        {% if productos %}
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {% for producto in productos %}
+            <!-- Tarjeta de producto -->
+            <div class="bg-white rounded-lg shadow-lg hover:shadow-2xl transition-all p-4 transform hover:scale-105">
+                {% if producto.imagen %}
+                <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" class="w-full h-48 object-cover rounded-t-md transition-transform duration-300 hover:scale-110">
+                {% endif %}
+
+                <div class="text-center mt-4">
+                    <h2 class="text-lg font-bold text-gray-800">{{ producto.nombre }}</h2>
+                    <p class="text-orange-500 text-xl font-semibold">$ {{ producto.precio|floatformat:0|intcomma }}</p>
+                    <p class="text-gray-600 text-sm mt-2">{{ producto.descripcion|linebreaksbr }}</p>
+                </div>
+
+                <!-- Botón de acción -->
+                <div class="mt-4 text-center">
+                    {% if user.is_authenticated %}
+                    <a href="https://wa.me/573182927165?text=¡Hola!, quisiera consultar más sobre el producto '{{ producto.nombre|urlencode }}' de la categoría '{{ categoria.Nombre_categoria|urlencode }}' en la plataforma Network Solutions."
+                        target="_blank"
+                        class="block bg-orange-500 text-white py-2 px-6 rounded-md hover:bg-orange-600 hover:scale-105 transition-all duration-300">
+                        Ir a comprar
+                    </a>
+                    {% else %}
+                    <a href="{% url 'login' %}"
+                        class="block bg-orange-500 text-white py-2 px-6 rounded-md hover:bg-orange-600 hover:scale-105 transition-all duration-300">
+                        Inicia sesión para comprar
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <!-- Mensaje si no hay productos -->
+        <div class="text-center text-gray-500 mt-8">
+            <h2 class="text-lg font-semibold">No hay productos disponibles en esta categoría.</h2>
+        </div>
+        {% endif %}
+    </main>
+
+    <!-- Script para el dropdown -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const dropdownButton = document.getElementById('dropdown-button');
+            const dropdownMenu = document.getElementById('dropdown-menu');
+
+            // Alternar el menú desplegable
+            dropdownButton?.addEventListener('click', (e) => {
+                e.stopPropagation();
+                dropdownMenu.classList.toggle('hidden');
+            });
+
+            // Cerrar al hacer clic fuera
+            document.addEventListener('click', () => {
+                dropdownMenu.classList.add('hidden');
+            });
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Inicio de Sesión</title>
+    <style>
+        body {
+            background-image: url("{% static 'image/banner_login.webp' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        /* Añadir un fondo difuminado */
+        .bg-overlay {
+            backdrop-filter: blur(4px);
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <main class="min-h-screen flex justify-center items-center">
+        <!-- Contenedor del formulario -->
+        <div class="relative bg-overlay border border-gray-300 shadow-lg rounded-lg px-12 py-10 w-[28rem]">
+            <h1 class="text-2xl font-bold mb-4 text-orange-500">Inicia Sesión</h1>
+            <p class="text-gray-600 mb-6">Ingresa tus datos para continuar.</p>
+            <form method="post" class="space-y-6">
+                {% csrf_token %}
+                <!-- Campo Usuario -->
+                <div>
+                    <label for="username" class="block text-gray-700">Usuario</label>
+                    <input type="text" name="username" id="username" required
+                        class="mt-2 w-full px-3 py-2 border-2 border-gray-300 rounded-md bg-gray-50 text-gray-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500">
+                </div>
+                <!-- Campo Contraseña -->
+                <div>
+                    <label for="password" class="block text-gray-700">Contraseña</label>
+                    <input type="password" name="password" id="password" required
+                        class="mt-2 w-full px-3 py-2 border-2 border-gray-300 rounded-md bg-gray-50 text-gray-800 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500">
+                </div>
+                <!-- Opciones -->
+                <div class="flex justify-between items-center text-sm">
+                    <a href="{% url 'registro' %}" class="text-orange-500 hover:underline">Crear cuenta</a>
+                    <button type="submit"
+                        class="bg-orange-500 text-white px-4 py-2 rounded-md hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400">
+                        Iniciar sesión
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

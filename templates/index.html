@@ -1,0 +1,282 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NETWORK SOLUTIONS IT PBX</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="website icon" href="{% static 'image/logo.jpg' %}">
+    <style>
+        /* Estilos personalizados */
+        .whatsapp-bubble {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25d366;
+            border-radius: 50%;
+            padding: 10px 15px;
+            z-index: 999;
+            transition: transform 0.3s ease-in-out;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .whatsapp-bubble:hover {
+            transform: translateY(-5px);
+        }
+
+        .whatsapp-icon {
+            width: 50px;
+            height: 50px;
+        }
+
+        Para mejorar el carrusel de tu página,
+        se pueden realizar algunas mejoras tanto en el diseño como en el rendimiento. Aquí te doy algunas sugerencias para hacerlo más atractivo,
+        funcional y eficiente: Ajustes en el Carrusel para Responsividad: Es importante que el carrusel se adapte bien a dispositivos móviles. Aunque estás usando Bootstrap,
+        es mejor añadir clases de Tailwind y algunos ajustes CSS para mejorar la visualización en pantallas pequeñas. Mejoras en la Navegación: Las flechas de navegación (prev/next) y los indicadores pueden ser más visibles y mejorar la accesibilidad. Se podría agregar un contraste más fuerte,
+        o incluso agregar animaciones suaves al hacer hover. Agrega un Efecto de Desenfoque o Opacidad en las Imágenes: Podrías usar efectos de transición como desvanecimientos o desenfoques para que el cambio de imágenes sea más suave. Optimización de Carga de Imágenes: Usa imágenes en formato webp para mejorar la carga en navegadores compatibles. Aquí tienes una versión mejorada del carrusel: html Copiar código <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel"><ol class="carousel-indicators"><li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li><li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li><li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li><li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"></li></ol><div class="carousel-inner"><div class="carousel-item active"><img class="d-block w-100" src="{% static 'image/imagen_c1.jpg' %}" alt="First slide" style="object-fit: cover; object-position: center;"></div><div class="carousel-item"><img class="d-block w-100" src="{% static 'image/imagen_c2.webp' %}" alt="Second slide" style="object-fit: cover; object-position: center;"></div><div class="carousel-item"><img class="d-block w-100" src="{% static 'image/imagen_c3.jpg' %}" alt="Third slide" style="object-fit: cover; object-position: center;"></div><div class="carousel-item"><img class="d-block w-100" src="{% static 'image/imagen_c4.webp' %}" alt="Fourth slide" style="object-fit: cover; object-position: center;"></div></div>< !-- Controles de Navegación --><button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button><button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></button></div>Cambios Realizados: object-fit: cover y object-position: center: Esto asegura que las imágenes mantengan sus proporciones,
+        sin deformarse,
+        y estén centradas. Indicadores de Carrusel: Aseguré que el último indicador tuviera un li correspondiente para la cuarta imagen. Mejoras en los Controles de Navegación: Añadí los botones de navegación con un mayor contraste visual (aunque aún puedes ajustarlos usando CSS). Optimización de Imágenes: Reemplaza algunas imágenes por .webp,
+        que es un formato más ligero y adecuado para la web. CSS adicional para mejorar la accesibilidad y la visibilidad: css Copiar código
+
+        /* Mejora la visibilidad de los controles de navegación */
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-color: #fff;
+            /* Blanco para mejor contraste */
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        /* Agregar efecto de hover sobre los indicadores */
+        .carousel-indicators li {
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Fondo oscuro para indicadores */
+        }
+
+        .carousel-indicators .active {
+            background-color: #ff6f00;
+            /* Color destacado para el indicador activo */
+        }
+
+        .carousel-item img {
+            height: 400px;
+            /* O el valor que prefieras */
+            object-fit: cover;
+            /* Ajuste de la imagen */
+        }
+
+        /* Asegurar que las imágenes en servicios y productos tengan la misma altura */
+        #services img,
+        #products img {
+            /* O el valor que prefieras */
+            object-fit: cover;
+            /* Ajuste de la imagen */
+        }
+    </style>
+</head>
+
+<body class="bg-white text-gray-800">
+
+    <header class="fixed top-0 left-0 w-full z-40 bg-black/70 backdrop-blur-sm text-white py-3 shadow-md">
+        <div class="container d-flex justify-content-between align-items-center">
+            <h1 class="text-2xl font-bold">Network Solutions</h1>
+            {% if user.is_authenticated %}
+            <div class="user-profile d-flex align-items-center">
+                <div class="px-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                    </svg>
+                </div>
+                <div>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle bg-transparent border-0 text-white"
+                            type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ user.username }}
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="{% url 'perfil_usuario' %}">Ver perfil</a></li>
+                            <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <a href="{% url 'login' %}" class="hover:underline text-orange-400 font-bold">Iniciar sesión</a>
+            {% endif %}
+        </div>
+    </header>
+
+    <section class="text-gray-800 text-center  relative overflow-hidden">
+        <!-- Video de fondo -->
+        <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover">
+            <source src="{% static 'image/video.mp4' %}" type="video/mp4">
+            Tu navegador no soporta la reproducción de videos.
+        </video>
+
+        <!-- Contenido del texto -->
+        <div class="relative z-10 bg-black/50 py-40">
+            <div class="container mx-auto">
+                <h2 class="text-4xl font-bold mb-4 text-white">Conectando tu mundo con tecnología innovadora</h2>
+                <p class="text-lg mb-6 text-gray-200">Descubre nuestros servicios de telecomunicaciones y los mejores
+                    dispositivos
+                    tecnológicos.</p>
+                <a href="#services"
+                    class="btn btn-light text-white font-bold py-2 px-4 rounded bg-orange-500 hover:bg-orange-400">Ver
+                    Servicios</a>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="services" class="py-12 bg-white">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-8 text-orange-500">Servicios</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {% if servicios %}
+                {% for servicio in servicios %}
+                <a href="{% url 'servicio' servicio.slug %}"
+                    class="border rounded-lg bg-white shadow-md p-6 text-center transform transition-transform hover:scale-105 hover:shadow-lg">
+                    {% if servicio.imagen_servicio %}
+                    <img src="{{ servicio.imagen_servicio.url }}" alt="{{ servicio.servicio }}"
+                        class="mx-auto mb-4 w-20 h-20 object-contain">
+                    {% endif %}
+                    <h3 class="text-lg font-semibold text-gray-700">{{ servicio.servicio }}</h3>
+                    <p class="text-sm text-gray-500 mt-2">{{ servicio.tipo_servicio }}</p>
+                    <p class="text-sm text-gray-500 mt-2">{{ servicio.descripcion|truncatewords:15 }}</p>
+                </a>
+                {% endfor %}
+                {% else %}
+                <div class="bg-white p-6 text-center">
+                    <h3 class="text-lg font-semibold text-gray-700">No hay servicios disponibles en este momento</h3>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+            <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block w-100" src="{% static 'image/imagen_c1.jpg' %}" alt="First slide"
+                    style="object-fit: cover; object-position: center;">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="{% static 'image/imagen_c2.webp' %}" alt="Second slide"
+                    style="object-fit: cover; object-position: center;">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="{% static 'image/imagen_c3.jpg' %}" alt="Third slide"
+                    style="object-fit: cover; object-position: center;">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="{% static 'image/imagen_c4.webp' %}" alt="Fourth slide"
+                    style="object-fit: cover; object-position: center;">
+            </div>
+        </div>
+        <!-- Controles de Navegación -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!-- Productos Section -->
+    <section id="products" class="py-12 bg-gray-100">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-8 text-orange-500">Nuestros Productos</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {% if categorias %}
+                {% for categoria in categorias %}
+                <a href="{% url 'productos_por_categoria' categoria.slug %}"
+                    class="border border-gray-300 rounded-lg bg-white shadow-sm p-6 text-center transform transition-transform hover:scale-105">
+                    {% if categoria.imagen_categoria %}
+                    <img src="{{ categoria.imagen_categoria.url }}" alt="{{ categoria.Nombre_categoria }}"
+                        class="mx-auto mb-4 w-32 h-auto">
+                    {% endif %}
+                    <h2 class="text-lg font-semibold text-gray-700">{{ categoria.Nombre_categoria }}</h2>
+                    <p class="text-sm text-gray-500 mt-2">{{ categoria.Explicacion_de_producto }}</p>
+                </a>
+                {% endfor %}
+                {% else %}
+                <div class="bg-white p-6 text-center">
+                    <h2 class="text-lg font-semibold text-gray-700">No hay categorías disponibles</h2>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Bubble -->
+    <a href="https://wa.me/573182927165?text=¡Hola!, quisiera saber más" target="_blank" class="whatsapp-bubble">
+        <i class="bi bi-whatsapp whatsapp-icon text-white text-2xl"></i>
+    </a>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-8">
+        <div
+            class="container mx-auto flex flex-col md:flex-row items-center justify-center space-y-8 md:space-y-0 px-4">
+            <!-- Sección Redes Sociales -->
+            <div class="flex space-x-6 justify-center">
+                <a href="https://www.facebook.com" target="_blank"
+                    class="transform transition-transform duration-300 hover:scale-110 hover:text-orange-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-10 h-10" viewBox="0 0 24 24">
+                        <path
+                            d="M22,12A10,10,0,1,0,12,22V14H9v-2h3V9.5A3.5,3.5,0,0,1,15.5,6H18V8h-2.5A1.5,1.5,0,0,0,14,9.5V12h4l-1,2H14v8A10,10,0,0,0,22,12Z" />
+                    </svg>
+                </a>
+                <a href="https://www.twitter.com" target="_blank"
+                    class="transform transition-transform duration-300 hover:scale-110 hover:text-orange-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-10 h-10" viewBox="0 0 24 24">
+                        <path
+                            d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" />
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com" target="_blank"
+                    class="transform transition-transform duration-300 hover:scale-110 hover:text-orange-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-10 h-10" viewBox="0 0 24 24">
+                        <path
+                            d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.333 3.608 1.308.975.975 1.246 2.242 1.308 3.608.058 1.266.069 1.646.069 4.85s-.012 3.584-.069 4.85c-.062 1.366-.333 2.633-1.308 3.608-.975.975-2.242 1.246-3.608 1.308-1.266.058-1.646.069-4.85.069s-3.584-.012-4.85-.069c-1.366-.062-2.633-.333-3.608-1.308-.975-.975-1.246-2.242-1.308-3.608C2.175 15.746 2.163 15.366 2.163 12s.012-3.584.069-4.85c.062-1.366.333-2.633 1.308-3.608.975-.975 2.242-1.246 3.608-1.308C8.416 2.175 8.796 2.163 12 2.163m0-2.163C8.741 0 8.332.01 7.052.07c-1.411.064-2.997.338-4.1 1.442C1.85 2.627 1.576 4.213 1.512 5.624.926 8.332 0 8.741 0 12s.926 3.668 1.512 6.376c.064 1.411.338 2.997 1.442 4.1 1.103 1.104 2.689 1.378 4.1 1.442C8.332 23.99 8.741 24 12 24s3.668-.01 6.376-.07c1.411-.064 2.997-.338 4.1-1.442 1.104-1.103 1.378-2.689 1.442-4.1C23.99 15.668 24 15.259 24 12s-.01-3.668-.07-6.376c-.064-1.411-.338-2.997-1.442-4.1C20.373 1.85 18.787 1.576 17.376 1.512 15.668.926 15.259 0 12 0z" />
+                        <circle cx="12" cy="12" r="3.2" />
+                        <path d="M18.406 5.594a1.44 1.44 0 1 1-2.876 0 1.44 1.44 0 0 1 2.876 0z" />
+                    </svg>
+                </a>
+            </div>
+
+            <!-- Sección de Información -->
+            <div class="text-center mt-8 md:mt-0">
+                <h2 class="text-xl font-bold mb-2 text-orange-500">Contacto</h2>
+                <p>Email: <a href="mailto:rvelasco@gmail.com"
+                        class="hover:text-orange-500 transition duration-300">rvelasco@gmail.com</a></p>
+                <p>Teléfono: 318 292 4567</p>
+                <p class="mt-4 text-gray-500">&copy; 2024 Network Solutions. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
