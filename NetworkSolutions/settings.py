@@ -25,8 +25,9 @@ SECRET_KEY = 'django-insecure-$0$*&^%$#@$!@#@$%^&*^%$#@$!@#@$%^&*^%$#@$!@#@$%^&*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-CSRF_TRUSTED_ORIGINS = ['https://37ba-179-51-111-78.ngrok-free.app']
-
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.ngrok-free.app'
+]
 ALLOWED_HOSTS = ['*']
 CORS_ALLOWED_ORIGINS = [
     '*',
@@ -93,7 +94,6 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -181,7 +181,7 @@ if not DEBUG:
 
 LOGIN_URL = 'login'
 
-LOGIN_REDIRECT_URL = 'login'
+LOGIN_REDIRECT_URL = 'index'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

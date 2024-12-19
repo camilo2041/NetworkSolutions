@@ -38,7 +38,7 @@ def registro(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('index')  # Redirige a la página de inicio de sesión
+            return redirect('login')
     else:
         form = CustomUserCreationForm()
     return render(request, 'login/registro.html', {'form': form})
